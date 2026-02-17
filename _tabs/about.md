@@ -2,6 +2,7 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
+image: /assets/img/avatars/usagi.jpg
 ---
 
 # SpaceFish
@@ -29,8 +30,8 @@ I’m an NLP Engineer with a passion for building large-scale multimodal systems
 ## 🛠️ Technical Skills
 
 - **Languages**: Python, C/C++, Java, SQL  
-- **Deep Learning**: PyTorch, TensorFlow, Transformers; familiar with open-source models like QwenVL, DeepSeek  
-- **Distributed Training**: FSDP, collective communication primitives, contrastive learning for VLM Embedders
+- **Deep Learning**: PyTorch, TensorFlow, Transformers
+- **Distributed Training**: FSDP, collective communication primitives
 
 ---
 
@@ -42,7 +43,7 @@ I’m an NLP Engineer with a passion for building large-scale multimodal systems
 
 - Lead the development of multimodal embeddings to improve UGC distribution for Douyin’s recommendation system.
 - Built real-time trending topic and meme recognition pipelines, enhancing user engagement with trend channels and duet features.
-- Designed data cleaning strategies using LLM-as-a-Judge and Seed-1.6VLM-generated CoT for fine-grained interest understanding.
+- Designed data cleaning strategies using LLM-as-a-Judge and Seed1.6-VLM-generated CoT for fine-grained interest understanding.
 - Achieved **+0.3% uAUC** and **+0.0038% LT** in core recommendation metrics.
 
 ### Baidu · Beijing  
