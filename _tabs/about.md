@@ -55,6 +55,6 @@ I'm an NLP Engineer with a passion for building large-scale multimodal systems t
 
 ---
 
-## 📌 Let’s Connect
+## 📌 Let's Connect
 
 I'm always open to discussing innovative ideas in multimodal AI, recommendation systems, and large‑scale machine learning. Feel free to reach out via email or GitHub!
