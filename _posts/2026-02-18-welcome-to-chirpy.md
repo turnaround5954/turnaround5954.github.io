@@ -1,13 +1,9 @@
 ---
-layout: post
-title: "Welcome to My Chirpy Blog!"
+title: Welcome to My Chirpy Blog!
 date: 2026-02-18 09:00:00 +0800
 categories: [blog, tutorial]
 tags: [chirpy, jekyll, github-pages]
 pin: true
-image:
-  path: /assets/img/avatars/usagi.jpg
-  alt: Welcome image
 ---
 
 Welcome to my new blog, powered by the [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) theme! This is the first post, and I'll use it to show off some of the features you can use in your own posts.
