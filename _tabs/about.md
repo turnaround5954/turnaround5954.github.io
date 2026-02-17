@@ -2,7 +2,6 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
-image: /assets/img/avatars/usagi.jpg
 ---
 
 # SpaceFish
@@ -12,7 +11,7 @@ image: /assets/img/avatars/usagi.jpg
 ---
 
 ## 👋 Hello
-
+![img-description](/assets/img/avatars/usagi.jpg)
 I’m an NLP Engineer with a passion for building large-scale multimodal systems that power content understanding and recommendation. Currently at ByteDance (Douyin), I focus on optimizing UGC distribution through cutting-edge embeddings and real-time trend detection. Previously at Baidu, I developed device fingerprinting and user profiling technologies that operated at the scale of hundreds of billions of relationships.
 
 ---
