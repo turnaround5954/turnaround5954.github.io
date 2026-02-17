@@ -12,7 +12,7 @@ order: 4
 
 ## 👋 Hello
 ![img-description](/assets/img/avatars/usagi.jpg)
-I’m an NLP Engineer with a passion for building large-scale multimodal systems that power content understanding and recommendation. Currently at ByteDance (Douyin), I focus on optimizing UGC distribution through cutting-edge embeddings and real-time trend detection. Previously at Baidu, I developed device fingerprinting and user profiling technologies that operated at the scale of hundreds of billions of relationships.
+I'm an NLP Engineer with a passion for building large-scale multimodal systems that power content understanding and recommendation. Currently at ByteDance (Douyin), I focus on optimizing UGC distribution through cutting-edge embeddings and real-time trend detection. Previously at Baidu, I developed device fingerprinting and user profiling technologies that operated at the scale of hundreds of billions of relationships.
 
 ---
 
@@ -57,4 +57,4 @@ I’m an NLP Engineer with a passion for building large-scale multimodal systems
 
 ## 📌 Let’s Connect
 
-I’m always open to discussing innovative ideas in multimodal AI, recommendation systems, and large‑scale machine learning. Feel free to reach out via email or GitHub!
+I'm always open to discussing innovative ideas in multimodal AI, recommendation systems, and large‑scale machine learning. Feel free to reach out via email or GitHub!
