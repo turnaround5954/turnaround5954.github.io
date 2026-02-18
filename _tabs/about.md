@@ -40,8 +40,8 @@ At ByteDance (Douyin), I am an NLP Engineer specializing in large-scale multimod
 **NLP Algorithm Engineer – Douyin Content Technology**  
 *2022.07 – Present*
 
-- Designed and implemented multimodal embeddings that enhanced UGC distribution within Douyin's recommendation system, achieving **+0.3% uAUC** and **+0.0038% LT** gains in core recommendation metrics
-- Developed real-time recognition pipelines for trending topics and memes, which powered trend-focused features and channels, achieving **+1.38% average active days** per user and **+1.02% topic open rate** among users with over 5 seconds of engagement, along with a **+0.003% lift** in overall long-term conversion (LT).
+- Designed and implemented multimodal embeddings that enhanced UGC distribution within Douyin's recommendation system, achieving **+0.3% uAUC** and **+0.0038% LT** (Life Time) gains in core recommendation metrics
+- Developed real-time recognition pipelines for trending topics and memes to power trend-focused features. This drove a **+1.38% lift** in user stickiness (DAU/MAU) and a **+1.02% increase** in topic open rate among deeply engaged users (>5s). Quantified the downstream impact on overall LT, attributing a **0.003% incremental lift** to this project.
 
 ### Baidu · Beijing  
 **Machine Learning Engineer – Security Department**  
