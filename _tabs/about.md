@@ -40,10 +40,8 @@ I'm an NLP Engineer with a passion for building large-scale multimodal systems t
 **NLP Algorithm Engineer – Douyin Content Technology**  
 *2022.07 – Present*
 
-- Lead the development of multimodal embeddings to improve UGC distribution for Douyin’s recommendation system.
-- Built real-time trending topic and meme recognition pipelines, enhancing user engagement with trend channels and duet features.
-- Designed data cleaning strategies using LLM-as-a-Judge and Seed1.6-VLM-generated CoT for fine-grained interest understanding.
-- Achieved **+0.3% uAUC** and **+0.0038% LT** in core recommendation metrics.
+- Designed and implemented multimodal embeddings that enhanced UGC distribution within Douyin's recommendation system, achieving +0.3% uAUC and +0.0038% LT gains in core recommendation metrics
+- Developed real-time recognition pipelines for trending topics and memes, which powered trend-focused features and channels, achieving +1.38% daily active days per user and +1.02% topic open rate among users with over 5 seconds of engagement, along with a +0.003% lift in overall long-term conversion (LT).
 
 ### Baidu · Beijing  
 **Machine Learning Engineer – Security Department**  
