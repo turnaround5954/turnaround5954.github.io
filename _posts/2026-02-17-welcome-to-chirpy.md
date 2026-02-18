@@ -27,3 +27,4 @@ Here's a Python snippet:
 ```python
 def hello_world():
     print("Hello, Chirpy!")
+```
