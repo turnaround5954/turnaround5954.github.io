@@ -56,7 +56,7 @@ At ByteDance (Douyin), I am an NLP Engineer specializing in large-scale multimod
 ## 🚀 Project Experience
 <div class="table-responsive" markdown="1">
 
-| <span class="fw-bold">Time</span> | <span class="fw-bold">Team</span> | <span class="fw-bold">Responsibilities</span> | <span class="fw-bold">Projects</span> | <span class="fw-bold">Key Technologies</span> |
+| <span class="fw-bold">Time</span> | <span class="fw-bold">Team</span> | <span class="fw-bold">Responsibilities</span> | <span class="fw-bold">Projects</span> | <span class="fw-bold">Key Methods</span> |
 |:------------------:|:------------------:|:---------------------------------------------|:--------------------------------------|:---------------------------------------------|
 | <span class="badge bg-primary">2025.04~Present</span> | **Content Technology** | Developing text and multimodal content understanding representation models, applied to UGC recommendation business | • UGC Multimodal Embedding<br>• Item2Item Embedding for Text-based Submissions<br>• Query2Item Embedding for Search Retrieval | • VLM (Aimv2-VIT + Qwen3-LM) Contrastive Learning<br>• LLM (Qwen3-LM) Contrastive Learning<br>• Online Hard Negative Mining<br>• FSDP / DeepSpeed / InfCL (Ring Attn.) |
 | <span class="badge bg-info">2025.01~2025.03</span> | **Long-term Ecosystem** | Undertaking trending business requirements, optimizing trending content distribution through content understanding technologies | • Optimizing the timeliness of high-quality content distribution<br>• Building a classification and tagging system for trending videos | • LLM-as-a-Judge |
