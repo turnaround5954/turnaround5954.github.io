@@ -4,7 +4,7 @@ date: 2026-02-23 09:00:00 +0800
 categories: [深度学习, 推荐系统]
 tags: [世界模型, JEPA, 对比学习, 多模态, 推荐系统]
 image:
-  path: /assets/img/posts/jepa/jepa.jpg
+  path: /assets/img/posts/jepa/stp.jpg
   alt: 世界模型与JEPA示意图
 ---
 
