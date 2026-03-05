@@ -12,7 +12,8 @@ order: 4
 
 ## 👋 Hello
 ![img-description](/assets/img/avatars/usagi.jpg)
-At ByteDance (Douyin), I am an NLP Engineer specializing in large-scale multimodal systems that drive content understanding and recommendation. I optimize UGC distribution by leveraging state-of-the-art embeddings and real-time trend detection. Previously at Baidu, I built and scaled device fingerprinting and user profiling technologies for billions of users and a graph of hundreds of billions of device relationships.
+
+At ByteDance (Douyin), I am a Multimodal Algorithm Engineer focused on advancing vision-language models (VLMs) and large‑scale multimodal representation learning to power content understanding and recommendation systems. My work involves designing and pre‑training novel VLM architectures, adapting them to downstream tasks via instruction fine‑tuning, and deploying real‑time multimodal recognition pipelines for UGC. Previously at Baidu, I developed scalable machine learning solutions for device fingerprinting and user profiling, handling massive user bases and complex graph relationships.
 
 ---
 
@@ -28,40 +29,44 @@ At ByteDance (Douyin), I am an NLP Engineer specializing in large-scale multimod
 
 ## 🛠️ Technical Skills
 
-- **Languages**: Python, C/C++, Java, SQL  
-- **Deep Learning**: PyTorch, TensorFlow, Transformers
-- **Distributed Training**: FSDP, collective communication primitives
+- **Programming Languages**: Python, C/C++, Java, SQL  
+- **Deep Learning Frameworks**: PyTorch, TensorFlow, Transformers  
+- **Multimodal & VLM**: Vision‑language pre‑training / fine‑tuning (CLIP, BLIP, Qwen‑VL), multimodal retrieval, open‑vocabulary visual entity recognition (RAM++) 
+- **Distributed Training & Scaling**: FSDP, DeepSpeed, Tensor Parallelism, Pipeline Parallelism, large‑scale data parallelism
 
 ---
 
 ## 💼 Work Experience
 
 ### ByteDance · Shanghai  
-**NLP Algorithm Engineer – Douyin Content Technology**  
+**Multimodal Algorithm Engineer – Douyin Content Technology**  
 *2022.07 – Present*
 
-- Designed and implemented multimodal embeddings that enhanced UGC distribution within Douyin's recommendation system, achieving **+0.3% uAUC** and **+0.0038% LT** (Life Time) gains in core recommendation metrics
-- Developed real-time recognition pipelines for trending topics and memes to power trend-focused features. This drove a **+1.38% lift** in user stickiness (DAU/MAU) and a **+1.02% increase** in topic open rate among deeply engaged users (>5s). Quantified the downstream impact on overall LT, attributing a **0.003% incremental lift** to this project.
+- Lead the design and development of unified multimodal embedding models for UGC recommendation, creating novel VLM architectures that fuse vision and language features to support multi‑task instruction tuning.
+- Spearhead the construction of large‑scale training datasets with advanced cleaning strategies, hard negative mining, and multi‑stage training pipelines to improve model generalization.
+- Develop real‑time recognition systems for trending topics and memes, significantly enhancing user engagement and powering trend‑focused features.
+- Build open‑vocabulary visual entity recognition systems supporting thousands of categories, applied across diverse business scenarios including content moderation, cover selection, and camera applications.
 
 ### Baidu · Beijing  
 **Machine Learning Engineer – Security Department**  
 *2018.07 – 2022.06*
 
-- Developed device fingerprinting technology using graph-based relationship modeling and machine learning to assign stable unique IDs to devices without user login.
-- Introduced unsupervised adversarial training (DANN) to handle feature sparsity, reducing false positive rate **below 0.1%** .
-- Built a unified user profiling system with PLE and MIND models, predicting demographic attributes and interest tags at scale.
+- Developed device fingerprinting technology using graph‑based relationship modeling and machine learning to assign stable, unique IDs to devices without user login.
+- Introduced unsupervised adversarial training (DANN) to handle feature sparsity, achieving robust performance with extremely low false positive rates.
+- Built a unified user profiling system with multi‑task learning (PLE, MMoE) and MIND models, predicting demographic attributes and interest tags at scale.
 
 ---
 
 ## 🚀 Project Experience
 <div class="table-responsive" markdown="1">
 
-| <span class="fw-bold">Time</span> | <span class="fw-bold">Team</span> | <span class="fw-bold">Responsibilities</span> | <span class="fw-bold">Projects</span> | <span class="fw-bold">Key Methods</span> |
-|:------------------:|:------------------:|:---------------------------------------------|:--------------------------------------|:---------------------------------------------|
-| <span class="badge bg-primary">2025.04~Present</span> | **Content Technology** | Developing text and multimodal content understanding representation models, applied to UGC recommendation business | • UGC Multimodal Embedding<br>• Item2Item Embedding for Text-based Submissions<br>• Query2Item Embedding for Search Retrieval | • VLM (Aimv2-VIT + Qwen3-LM) Contrastive Learning<br>• LLM (Qwen3-LM) Contrastive Learning<br>• Online Hard Negative Mining<br>• FSDP / DeepSpeed / InfCL (Ring Attn.) |
-| <span class="badge bg-info">2025.01~2025.03</span> | **Long-term Ecosystem** | Undertaking trending business requirements, optimizing trending content distribution through content understanding technologies | • Optimizing the timeliness of high-quality content distribution<br>• Building a classification and tagging system for trending videos | • LLM-as-a-Judge |
-| <span class="badge bg-success">2024.07~2025.01</span> | **Content Technology** | Undertaking business requirements for trending topics and interactive entertainment features, leading some technological explorations | • Building a process for mining trending video content<br>• Building a meme video recognition pipeline from scratch<br>• Implementing a Recognize Anything Model (RAM++) with Chinese understanding capabilities<br>• Building a Query2Item two-tower model for post-search recommendation relevance modeling | • RAM++ / Query2Label<br>• MagicLens<br>• Multi-task Text Embedding (BERT-based) |
-| <span class="badge bg-secondary">2022.07~2024.07</span> | **Content Security** | Mining internal risks, identifying controversial trending topics, assisting in public opinion management | • CLIP model for trending video retrieval<br>• LLM for trending video relevance judgment<br>• Streaming clustering of risk events | • CLIP (text2video)<br>• RAG + LLM SFT (w/ CoT)<br>• Distributed Stream Clustering |
+| <span class="fw-bold">Time</span> | <span class="fw-bold">Project</span> | <span class="fw-bold">Key Contributions</span> | <span class="fw-bold">Techniques</span> |
+|:------------------:|:--------------------------------------|:---------------------------------------------|:---------------------------------------------|
+| <span class="badge bg-primary">2024.11–2025.02</span> | **UGC Multimodal Representation Model** | Designed a VLM architecture (ViT + LLM) for unified multimodal embeddings, supporting multi‑task instruction tuning. Constructed large‑scale training data with advanced cleaning and online hard negative mining. Improved recommendation quality through prompt distillation of user behavior Chain‑of‑Thought. | VLM pre‑training, PixelUnshuffle, multi‑stage training, prompt distillation |
+| <span class="badge bg-info">2024.07–2025.03</span> | **Hot Topic Multimodal Recall & Classification** | Built a multimodal two‑tower retrieval and classification system for trending topics, integrating transformer layers and contrastive learning objectives. Enhanced matching accuracy using large‑scale weakly supervised data combined with human annotations. | MagicLens, contrastive learning, ITM loss, transformer‑based fusion |
+| <span class="badge bg-success">2024.01–2024.06</span> | **Open Vocabulary Visual Entity Recognition** | Adapted RAM++ to support Chinese and thousands of categories, creating an extensible visual entity recognition system. Utilized LLM‑generated descriptions and CN‑CLIP text encoder, with joint training of multi‑label classification and contrastive learning. Deployed across content safety, cover selection, and camera apps. | RAM++, CN‑CLIP, multi‑label classification, contrastive learning, Perceiver fusion |
+| <span class="badge bg-secondary">2024.09–2025.01</span> | **Meme Real‑time Recognition Pipeline** | Developed a real‑time streaming clustering and vector search service for meme videos, using CLIP‑based multimodal representations and approximate nearest neighbor search. Significantly improved recall and user engagement for interactive features. | Video‑CLIP, streaming clustering, ElasticSearch, vector database |
+| <span class="badge bg-warning">2022.07–2024.07</span> | **Zero‑shot Sensitive Event Recognition** | Built a multimodal retrieval system using CLIP for sensitive event detection, integrated with LLM‑based relevance judgment and RAG. Established an annotation platform and fine‑tuned a 7B LLM for risk identification. Applied to numerous events, greatly enhancing content safety. | CLIP (text‑video), RAG, LLM SFT with CoT, streaming clustering |
 
 </div>
 
@@ -82,4 +87,4 @@ In addition to machine learning and deep learning, I have self-studied open cour
 
 ## 📌 Let's Connect
 
-I'm always open to discussing innovative ideas in multimodal AI, recommendation systems, and large‑scale machine learning. Feel free to reach out via email or GitHub!
+I'm always open to discussing innovative ideas in multimodal AI, foundation models, and large‑scale machine learning. Feel free to reach out via email or GitHub!
