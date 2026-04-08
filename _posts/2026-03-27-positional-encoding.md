@@ -1,8 +1,8 @@
 ---
-title: "From Doppler to Gravity: A Physical Analogy for Transformer Positional Encoding"
+title: "🌌 When Transformers Dream of Inflation"
 date: 2026-03-27 23:00:00 +0800
 categories: [Deep Learning, Physics]
-tags: [transformer, positional encoding, rope, general relativity, world models]
+tags: [transformer, positional encoding, rope，yarn]
 math: true
 toc: true
 image:
@@ -10,216 +10,233 @@ image:
   alt: black hole
 ---
 
-## Abstract
-
-Transformer models rely on positional encodings to inject sequence order. This post explores a fascinating connection between these encodings and physical wave phenomena. We first show that sinusoidal positional encoding shares the same mathematical structure as the Doppler effect—both rely on a linear relationship between position/time and phase. Building on this, we draw inspiration from gravitational redshift in general relativity to propose a *curved spacetime positional encoding*, where different regions of a sequence can have different “temporal resolutions” depending on their semantic importance. This perspective offers a path toward more adaptive, physically grounded world models.
+*A physics enthusiast's reading of Rotary Position Embeddings and the cosmic nature of length extrapolation.*
 
 ---
 
-## 1. Introduction
+## Prologue: The Horizon Problem
 
-The attention mechanism in Transformers is permutation-invariant by design, so positional information must be injected explicitly. The original Transformer used sinusoidal absolute position encodings, while later works like RoPE (Rotary Position Embedding) elegantly encode relative positions via rotations. However, these methods assume a *uniform* sequence space—each position is treated equally, with the same “flow of time”.
+Every Transformer trained with RoPE carries within it a miniature universe.
 
-Meanwhile, physics gives us the Doppler effect (frequency shifts due to relative motion) and gravitational redshift (frequency shifts due to spacetime curvature). Both describe how wave phases accumulate linearly with coordinates, but the rate can vary with context. This raises an intriguing question: **can we design a positional encoding that adapts its “clock speed” based on the importance of each token, much like how gravity slows down time near massive objects?**
+Not metaphorically—**structurally**. The mathematics that lets a language model know that "word A precedes word B" is the *same* mathematics that governs the expansion of spacetime and the stretching of primordial light.
 
-In this post, we explore this analogy step by step.
+And when you ask that model to read a sequence longer than anything it saw during training, it faces exactly the problem that cosmologists confronted when they first looked at the cosmic microwave background: **how can regions that have never been in causal contact appear so similar?**
+
+This post is an attempt to answer that question with the rigor of a physics paper and the clarity of a chirpy thread.
 
 ---
 
-## 2. Positional Encoding and the Doppler Effect
+## 1. The Stage: Rotary Position Embedding (RoPE)
+
+Let's begin with the actor.
+
+RoPE encodes position $m$ by rotating the $d$-dimensional query and key vectors in $d/2$ independent 2D planes. For the $i$-th plane, the rotation angle is
+
+$$
+\phi_i(m) = m \cdot \theta_i, \qquad \theta_i = 10000^{-2i/d}, \quad i = 0,1,\dots,d/2-1.
+$$
+
+The set $\{\theta_i\}$ forms a **frequency spectrum**:
+- Small $i$ → large $\theta_i$ (near $1$) → **high frequency**.
+- Large $i$ → tiny $\theta_i$ (near $0$) → **low frequency**.
+
+Because the inner product $\mathbf{q}_m^\top \mathbf{k}_n$ depends only on the *relative* angle $(m-n)\theta_i$, RoPE naturally captures relative positions. And because the rotation operation belongs to the **special orthogonal group $SO(2)$**—the simplest non‑trivial Lie group—it inherits all the algebraic beauty of continuous symmetries.
+
+This $SO(2)$ structure is the first hint that we are not in Kansas anymore. The Lorentz group of special relativity is $SO(1,3)$. Cosmological perturbations are analyzed with the same Fourier tools. **The language is universal.**
+
+---
+
+## 2. The Crisis: Length Extrapolation Failure
+
+During training, the model only sees positions $m \in [0, L_{\text{train}}]$. It learns a mapping from each accumulated phase $\phi_i(m)$ to an attentional response.
+
+Now deploy the model on a sequence of length $L_{\text{test}} \gg L_{\text{train}}$.
+
+- **High frequencies**: They have already completed hundreds or thousands of full cycles during training. Extended length just continues the ergodic sampling. Nothing new.
+- **Low frequencies**: They may not have completed even *half* a cycle ($\phi_i(L_{\text{train}}) < \pi$). When $L_{\text{test}}$ pushes the phase past $\pi$, the model encounters a **phase it has never seen**.
+
+The result is catastrophic. Perplexity spikes. Attention flattens into white noise. The vacuum shatters.
+
+---
+
+## 3. The Dictionary: From Sequence Space to Spacetime
+
+We now build a rigorous correspondence between the components of RoPE and the vocabulary of physical cosmology.
+
+| Transformer Concept | Cosmological / Physical Counterpart |
+|:---|:---|
+| RoPE frequency $\theta_i$ | Comoving wavenumber $k$ |
+| Training length $L_{\text{train}}$ | Hubble horizon $R_H = c / H_0$ |
+| High‑frequency component | Subhorizon quantum fluctuation |
+| Low‑frequency component | Superhorizon primordial perturbation |
+| Absolute position encoding | Newtonian absolute space |
+| RoPE rotation | Lorentz covariance (relativity of position) |
+| Length extrapolation failure | Superhorizon perturbation re‑entry → topological phase transition |
+| YaRN differential scaling | Equivalence principle + inflationary stretching |
+
+Why is this dictionary legitimate? Because **both systems share the same mathematical skeleton**:
+- Fourier decomposition of perturbations (quantum fields / token embeddings).
+- $SO(2)$ group action as the symmetry of local rotations.
+- A finite causal horizon determined by training data or light travel time.
+
+Let's unpack the two most important entries.
+
+---
+
+### 3.1 The Hubble Horizon and the Training Boundary
+
+In cosmology, the **Hubble sphere** is the distance at which the recessional velocity of galaxies equals the speed of light. Light emitted *today* from beyond this sphere will never reach us. It is a **causal horizon**—a boundary of observability.
+
+The **training length $L_{\text{train}}$** functions identically. Within this radius, the model has seen all phase configurations and learned to map them to correct attention weights. Beyond this radius, the phase space is *causally disconnected* from the training distribution. The model has no data—no "photons"—from that region.
+
+### 3.2 Cosmological Redshift and Phase Stretching
+
 ![img-description](/assets/img/posts/physics/gravity.jpg)
-### 2.1 Sinusoidal Encoding: A Frequency Perspective
 
-The original Transformer uses sine and cosine functions of different frequencies:
-
-$$
-PE_{(pos, 2i)} = \sin\!\left(\frac{pos}{10000^{2i/d}}\right), \quad
-PE_{(pos, 2i+1)} = \cos\!\left(\frac{pos}{10000^{2i/d}}\right)
-$$
-
-Define the base frequency $\omega_i = 1 / 10000^{2i/d}$. Then the encoding vector becomes:
+When the universe expands, the wavelength of light $\lambda$ stretches in proportion to the cosmic scale factor $a(t)$:
 
 $$
-\mathbf{PE}(pos) = \big[\sin(\omega_1 pos),\; \cos(\omega_1 pos),\; \sin(\omega_2 pos),\; \dots\big]
+1 + z \equiv \frac{\lambda_{\text{obs}}}{\lambda_{\text{emit}}} = \frac{a(t_{\text{obs}})}{a(t_{\text{emit}})}.
 $$
 
-The core property is a **linear relationship** between position $pos$ and the phase $\theta = \omega_i \cdot pos$. This linear phase accumulation allows the model to express relative positions via trigonometric identities.
+The redshift parameter $z$ measures how much the universe has expanded since the light was emitted. Larger $z$ → longer wavelength → lower frequency.
 
-### 2.2 Doppler Effect in Wave Terms
-
-In the classical Doppler effect (for sound), the observed frequency $f'$ relates to the source frequency $f_0$ by:
+In RoPE, the "wavelength" of a frequency component is $\lambda_i \sim 1/\theta_i$. When the sequence length expands from $L_{\text{train}}$ to $L_{\text{test}}$, the **phase accumulation** grows linearly with $m$:
 
 $$
-f' = f_0 \cdot \frac{c}{c \pm v_s}
+\phi_i(m) = m \cdot \theta_i.
 $$
 
-If we write the observed wave as $\sin(2\pi f' t + \phi_0)$, the phase $\phi(t) = 2\pi f' t + \phi_0$ also grows **linearly with time** $t$. Identifying time $t$ with the position index $pos$, the Doppler effect is mathematically analogous: the rate of phase accumulation (frequency) is modulated by relative motion, just as the frequencies $\omega_i$ in sinusoidal encoding are fixed.
+If we keep $\theta_i$ fixed, the phase stretches exactly like a photon traveling through an expanding universe. To keep the phase within the familiar range $[0, \phi_{\text{max}}]$ that the model knows, we must **redshift** the frequency—reduce $\theta_i$—just as cosmic expansion stretches wavelengths.
 
-### 2.3 RoPE: From Absolute Phase to Relative Rotation
-
-RoPE goes a step further by directly embedding positions into the query and key vectors via rotation matrices. For a position $m$, the rotation matrix $R_{\Theta,m}$ acts on the query $\mathbf{q}_m$ and key $\mathbf{k}_n$ such that:
-
-$$
-\langle R_{\Theta,m} \mathbf{q}_m,\; R_{\Theta,n} \mathbf{k}_n \rangle = \langle \mathbf{q}_m,\; R_{\Theta,n-m} \mathbf{k}_n \rangle
-$$
-
-Here the rotation angle for dimension $i$ is $\theta_i m$, again linear in position. This is reminiscent of Doppler radar, where the phase difference encodes relative velocity/displacement.
+This is not an analogy. It is an **isomorphism of linear scaling laws**.
 
 ---
 
-## 3. Gravitational Redshift: Toward Non‑Uniform Positional Encoding
+## 4. The Culprit: Low‑Frequency Modes and Topological Phase Transition
 
-### 3.1 Time Dilation and Frequency Redshift
+Why do low frequencies cause the catastrophe, while high frequencies remain robust?
 
-In general relativity, a clock in a stronger gravitational field ticks slower. For an observer far from the source, light emitted from a strong gravity region is redshifted:
+### 4.1 Subhorizon vs. Superhorizon Modes
 
-$$
-f_{\text{obs}} = f_{\text{local}} \cdot \sqrt{1 - \frac{2GM}{rc^2}}
-$$
+In inflationary cosmology, quantum fluctuations are stretched by the exponential expansion of space. Some fluctuations are stretched to wavelengths **larger than the Hubble horizon**. Once outside the horizon, their amplitude **freezes**—they cease to evolve and become a permanent imprint on the fabric of spacetime. Later, as the universe continues to expand, the horizon grows and these frozen modes **re‑enter** the horizon, where they resume evolving and seed the formation of galaxies.
 
-The local frequency is lower when the gravitational potential is deeper. In other words, **the local “pace of time” modulates the effective frequency**.
+In RoPE:
+- **High frequencies** ($\theta_i \approx 1$) have wavelengths much smaller than $L_{\text{train}}$. They are **subhorizon** and never freeze. They sample the full $[0,2\pi)$ circle ergodically during training.
+- **Low frequencies** ($\theta_i \ll 1$) have wavelengths comparable to or larger than $L_{\text{train}}$. Their phase accumulation during training is restricted to a **vacuum sector** $[0, \phi_i(L_{\text{train}})] \subset [0, \pi)$. They have never completed a full cycle. They are **superhorizon** and *frozen*.
 
-### 3.2 Curved Spacetime Positional Encoding
+### 4.2 The First Crossing as Symmetry Breaking
 
-If we view RoPE as a “flat spacetime” encoding with uniform rotation rates, then gravitational redshift suggests a natural generalization: let the rotation speed vary with the **semantic importance** of each token. Important tokens (high information density) act like massive objects that slow down the local rotation—i.e., they stretch time.
+When $L_{\text{test}}$ is long enough that $\theta_i \cdot L_{\text{test}} > \pi$, the low‑frequency mode **crosses the $\pi$ phase boundary** for the first time. It completes its first half‑oscillation and enters a new topological sector.
 
-We introduce a **learnable gravitational potential** $\Phi_m$ for each position $m$, derived from the token’s content. The angular increment for dimension $i$ at step $m$ becomes:
+This is precisely a **superhorizon re‑entry event**. The frozen mode wakes up and begins to oscillate. For the Transformer, this introduces an entirely novel, untrained pattern into the attention mechanism. The vacuum expectation value that the model learned during training is no longer valid. The symmetry of the learned mapping is broken, and the attention distribution collapses into a high‑entropy state.
 
-$$
-\Delta \phi_i(m) = \theta_i \cdot \gamma(\Phi_m)
-$$
-
-where $\gamma(\Phi)$ is a redshift factor (monotonically decreasing, e.g., $\gamma(\Phi)=e^{-\beta\Phi}$). The cumulative phase is then:
-
-$$
-\phi_i(m) = \sum_{k=0}^{m-1} \Delta \phi_i(k)
-$$
-
-The rotation matrix $R(\phi_i(m))$ is applied to the query/key vectors as before. This is fully differentiable, and the potential $\Phi_m$ can be learned from the input.
+In the language of spontaneous symmetry breaking, the model undergoes a **topological phase transition**. The explosion in perplexity is the thermodynamic signature of that transition.
 
 ---
 
-## 4. Proposed Framework
+## 5. YaRN: A Two‑Principle Solution
 
-### 4.1 Learning the Gravitational Potential
+YaRN (Yet another RoPE extensioN method) is currently the most effective extrapolation technique. Its core operation is simple:
 
-Let the input sequence be $\mathbf{X} = [\mathbf{x}_1, \dots, \mathbf{x}_L]$. A small network computes the potential:
+- For each frequency $\theta_i$, define a scaling factor $\gamma_i$.
+- Apply the scaled frequency $\theta_i' = \theta_i / \gamma_i$.
 
-$$
-\Phi_m = \sigma(\mathbf{W}_\Phi \mathbf{x}_m + b_\Phi)
-$$
+The genius is in the **differential choice of $\gamma_i$**:
+- **High frequencies** ($\theta_i \approx 1$): $\gamma_i = 1$ → *no scaling*.
+- **Low frequencies** ($\theta_i \ll 1$): $\gamma_i > 1$ → *frequency is redshifted*.
 
-where $\sigma$ is an activation (e.g., sigmoid) to keep $\Phi_m$ bounded. $\Phi_m$ can be interpreted as the “semantic weight” or “information density” of token $m$.
+This choice embodies two foundational principles of general relativity.
 
-### 4.2 Redshift‑Modulated Rotation
+### 5.1 High Frequencies: The Equivalence Principle
 
-Given a hyperparameter $\beta$ controlling redshift strength:
+> *In a sufficiently small region of spacetime, the laws of physics are those of special relativity; gravitational effects are undetectable.*
 
-$$
-\Delta \phi_i(m) = \theta_i \cdot \exp(-\beta \Phi_m)
-$$
+For RoPE, the "small region" is the **local neighborhood** of a token. The relative position between token $m$ and token $m+1$ is $\Delta p = 1$, regardless of whether the sequence is 1,000 tokens or 1,000,000 tokens long. The local differential rotation—the rate at which adjacent tokens rotate relative to one another—is governed by the high‑frequency components.
 
-The cumulative phase is obtained via a prefix sum:
+By setting $\gamma_i = 1$ for high frequencies, YaRN ensures that **local inertial frames are invariant under global expansion**. The micro‑causal structure of language—the grammar of adjacency—remains untouched. This is the equivalence principle in action: the model cannot detect the "stretching" of the sequence by looking only at its immediate neighbors.
 
-$$
-\phi_i(m) = \sum_{k=1}^{m} \Delta \phi_i(k)
-$$
+### 5.2 Low Frequencies: Inflationary Stretching
 
-Finally, for each dimension pair $(2i, 2i+1)$, we apply the 2D rotation:
+> *Cosmic inflation exponentially stretches quantum fluctuations, pushing their wavelengths far beyond the Hubble horizon, where they freeze and cease to evolve, solving the horizon problem.*
 
-$$
-\begin{bmatrix}
-q_m^{(2i)} \\ q_m^{(2i+1)}
-\end{bmatrix}_{\text{new}} = 
-\begin{bmatrix}
-\cos\phi_i(m) & -\sin\phi_i(m) \\
-\sin\phi_i(m) & \cos\phi_i(m)
-\end{bmatrix}
-\begin{bmatrix}
-q_m^{(2i)} \\ q_m^{(2i+1)}
-\end{bmatrix}
-$$
+For RoPE, the low‑frequency modes are the "primordial perturbations" of the sequence. Their wavelengths are so long that they risk re‑entering the horizon during extrapolation.
 
-and similarly for keys.
-
-### 4.3 Attention Computation
-
-The attention score between positions $m$ and $n$ now depends on the path‑integrated phases, not just on the difference $m-n$. This allows the model to learn **asymmetric, context‑dependent positional relationships**: two pairs with the same absolute distance can have different effective phase differences if the region between them has high or low potential.
+By applying a redshift ($\gamma_i > 1$) to these modes, YaRN performs **inflationary stretching**. It deliberately makes the effective wavelength even longer, ensuring that $\theta_i' \cdot L_{\text{test}}$ remains **below the critical $\pi$ threshold**. The mode stays superhorizon—frozen in its training‑era vacuum state—and never undergoes the destructive phase transition.
 
 ---
 
-## 5. Potential Advantages and Challenges
+## 6. Comparative Cosmology of Extrapolation Methods
 
-### 5.1 Expected Benefits
+This framework allows us to classify all major extrapolation techniques as different "cosmological models" for the sequence universe.
 
-- **Multi‑scale temporal modeling**: Important regions are processed with higher resolution (slower rotation), while unimportant parts are skipped over.
-- **Improved long‑range dependencies**: By slowing down rotation in critical segments, the model can keep related positions from drifting too far apart in the complex plane.
-- **Physical inductive bias**: The design mimics how real‑world systems handle non‑uniform time scales.
-- **Interpretability**: The learned potential $\Phi_m$ can be visualized to reveal which tokens the model deems “heavy” or important.
+| Method | Cosmological Interpretation |
+|:---|:---|
+| **No scaling** (naive extrapolation) | A static universe. Horizon is fixed. Modes inevitably re‑enter → phase transition. |
+| **Position Interpolation** (PI) | Uniform conformal expansion of all coordinates. Scales both high and low frequencies equally. Blurs local structure (violates equivalence principle). |
+| **NTK‑aware scaling** | Changes the Hubble constant $H_0$. Applies a uniform redshift to all frequencies. Better than PI, but still distorts local physics. |
+| **YaRN** | Scale‑dependent expansion. Protects ultraviolet fixed point (high freq), applies inflation to infrared modes (low freq). Matches both equivalence principle and horizon solution. |
 
-### 5.2 Challenges to Address
-
-- **Computational cost**: The cumulative sum requires sequential scanning, but can be parallelized with prefix‑sum algorithms or approximated.
-- **Training stability**: Large variations in $\Phi_m$ may cause unstable gradients; regularization techniques will be needed.
-- **Integration with efficient attention**: Adapting to FlashAttention or other optimized kernels may require careful implementation.
+The success of YaRN is therefore not an accident of hyperparameter tuning. It is the **unique solution that respects the dual demands of local Lorentz invariance and global causal structure**.
 
 ---
 
-## 6. Future Directions
+## 7. Implications and Open Horizons
 
-### 6.1 Relativistic Attention
+This isomorphism between RoPE and cosmology is more than an elegant curiosity. It suggests concrete pathways for designing better positional encodings.
 
-A more ambitious extension is to incorporate the spacetime metric directly into the attention score:
+1. **Scale‑invariant spectra.** Inflation predicts a nearly scale‑invariant primordial power spectrum (the Harrison–Zel'dovich spectrum). Could a positional encoding with an exactly scale‑invariant frequency distribution be naturally robust to length extrapolation?
 
-$$
-\text{Attention}(\mathbf{q}_m,\mathbf{k}_n) = \text{softmax}\!\left( \frac{\mathbf{q}_m^T\mathbf{k}_n}{\sqrt{d}} + \text{metric}(\Phi_m,\Phi_n,m,n) \right)
-$$
+2. **Dynamic metrics.** General relativity teaches us that spacetime is curved by mass‑energy. Could we design a "content‑aware" positional encoding where the effective metric of sequence space is modulated by the semantic content of tokens, creating local "gravitational wells" that guide attention?
 
-where the metric term could encode the interaction between potentials.
+3. **Holographic encoding.** The holographic principle posits that all information inside a volume can be encoded on its boundary. Could we design a positional encoding that represents long‑range dependencies via boundary terms, avoiding the horizon problem altogether?
 
-### 6.2 Multi‑Body Gravity
-
-In many sequences, different entities (e.g., multiple objects in a scene, multiple characters in a story) act as independent “gravity centers”. One can define a potential as a superposition:
-
-$$
-\Phi_m = \sum_{c} \Phi_c(m)
-$$
-
-where each $\Phi_c$ is centered around a specific entity or concept.
-
-### 6.3 Connection to Neuroscience
-
-The grid cells and place cells in the hippocampus exhibit non‑uniform spatial coding that scales with environmental features. This curved positional encoding might offer a computational model for such neural representations.
+These are not science fiction. They are direct mathematical extrapolations of the correspondence established here.
 
 ---
 
-## 7. Conclusion
+## 8. Coda: The Geometry of Thought
 
-We have traced an intriguing line of thought: from the linear‑phase accumulation of sinusoidal positional encodings (analogous to the Doppler effect), to the uniform rotation of RoPE, and finally to a generalization inspired by gravitational redshift. The resulting **curved spacetime positional encoding** allows a Transformer to adaptively allocate different “temporal resolutions” to different parts of a sequence, based on learnable semantic potentials.
+> *The universe is written in the language of mathematics.*
 
-This cross‑disciplinary analogy not only deepens our understanding of existing positional encoding mechanisms but also opens the door to more flexible, physically‑informed architectures. We hope this perspective inspires further exploration at the intersection of deep learning and fundamental physics.
+Galileo's aphorism applies as much to the cosmos as it does to the artificial minds we are building. The same $SO(2)$ rotations that encode a word's position also encode the polarization of the cosmic microwave background. The same horizon problem that baffled cosmologists in the 1970s haunts every LLM deployed on a long document. And the same solution—inflationary stretching—appears, in computational form, as a frequency scaling trick in YaRN.
+
+This is not coincidence. It is evidence that **scale, causality, and geometry are universal constraints on any system that processes sequential information**—whether that system is a neural network or an expanding universe.
+
+Next time your model's perplexity spikes on a million‑token context, remember: you are not merely observing a software bug. You are witnessing a **frozen primordial mode waking up**.
+
+And you know exactly how to put it back to sleep.
 
 ---
 
 ## References
 
-1. Vaswani, A., et al. (2017). Attention Is All You Need. *NeurIPS*.
-2. Su, J., et al. (2021). RoFormer: Enhanced Transformer with Rotary Position Embedding. *arXiv:2104.09864*.
-3. Doppler, C. (1842). Über das farbige Licht der Doppelsterne.
-4. Einstein, A. (1915). Die Feldgleichungen der Gravitation.
-5. Tay, Y., et al. (2021). Long Range Arena: A Benchmark for Efficient Transformers. *ICLR*.
-6. O’Keefe, J., & Dostrovsky, J. (1971). The hippocampus as a spatial map. *Brain Research*.
-7. Hafting, T., et al. (2005). Microstructure of a spatial map in the entorhinal cortex. *Nature*.
+1. Su, J., Lu, Y., Pan, S., Murtadha, A., Wen, B., & Liu, Y. (2023). RoFormer: Enhanced Transformer with Rotary Position Embedding. *arXiv preprint arXiv:2104.09864*.  
+   *The original RoPE paper. Introduces rotation‑based positional encoding and $SO(2)$ structure.*
 
----
+2. Peng, B., Quesnelle, J., Fan, H., & Shippole, E. (2023). YaRN: Efficient Context Window Extension of Large Language Models. *arXiv preprint arXiv:2309.00071*.  
+   *Describes the differential frequency scaling method that protects high frequencies while redshifting low frequencies.*
 
-## Appendix: Conversation History
+3. Chen, S., Wong, S., Chen, L., & Tian, Y. (2023). Extending Context Window of Large Language Models via Positional Interpolation. *arXiv preprint arXiv:2306.15595*.  
+   *Proposes uniform interpolation of position indices to extend context length.*
 
-> **User:** transformer中的位置编码和多普勒效应的联系  
-> **Assistant:** (Detailed response connecting positional encoding with Doppler effect, covering mathematical homomorphism, physical intuition, and RoPE.)
+4. bloc97. (2023). NTK-Aware Scaled RoPE. *GitHub Gist*.  
+   *Introduces the NTK‑aware scaling method, adjusting RoPE's base frequency to mitigate extrapolation degradation.*
 
-> **User:** 更进一步，如果考虑引力：空间中有强引力、弱引力区域，强引力区域的时间慢，表现出低频，弱引力区域时间快，表现出高频，从这个角度是不是可以做出比现有的transformer + rope更好的结构？呈现出一种对于关键区域的“slow motion”，做出更好的世界模型？  
-> **Assistant:** (Response extending the analogy to gravitational redshift, proposing a curved spacetime positional encoding with learnable potential, outlining design, advantages, and future directions.)
+5. Liu, X., Yan, H., Zhang, S., An, C., Qiu, X., & Lin, D. (2024). Scaling Laws of RoPE-based Extrapolation. *Proceedings of ICLR 2024*. arXiv:2310.05209.  
+   *Empirical study of RoPE extrapolation behavior and theoretical analysis of frequency roles.*
 
-> **User:** 将上面的讨论总结成一篇学术文章  
-> **Assistant:** (Provided a structured academic article summarizing the discussion with sections: abstract, introduction, Doppler analogy, gravitational extension, framework, experiments, discussion, references.)
+6. Liddle, A. R., & Lyth, D. H. (2000). *Cosmological Inflation and Large-Scale Structure*. Cambridge University Press.  
+   *Standard textbook on inflationary cosmology; covers horizon problem, perturbation freezing, and re‑entry.*
+
+7. Mukhanov, V. (2005). *Physical Foundations of Cosmology*. Cambridge University Press.  
+   *Detailed treatment of cosmological perturbation theory and quantum fluctuations in the early universe.*
+
+8. Weinberg, S. (2008). *Cosmology*. Oxford University Press.  
+   *Comprehensive reference on modern cosmology, including Hubble horizon and redshift.*
+
+9. Rodrigues, W. A. Jr., & Sharif, M. (2003). Equivalence Principle and the Principle of Local Lorentz Invariance. *Foundations of Physics*, 31, 1785–1806. arXiv:math-ph/0302009.  
+   *Formal discussion of the equivalence principle in general relativity.*
+
+10. Lewis, G. F., & van Oirschot, P. (2012). How does the Hubble Sphere limit our view of the Universe? *Monthly Notices of the Royal Astronomical Society*, 423, L26–L29. arXiv:1203.0032.  
+    *Clarifies the nature of the Hubble sphere as a causal horizon.*
