@@ -7,11 +7,7 @@ math: true
 toc: true
 image:
   path: /assets/img/posts/physics/black_hole.jpg
-  alt: black hole
----
-
-*A physics enthusiast's reading of Rotary Position Embeddings and the cosmic nature of length extrapolation.*
-
+  alt: A physics enthusiast's reading of Rotary Position Embeddings and the cosmic nature of length extrapolation.
 ---
 
 ## Prologue: The Horizon Problem
