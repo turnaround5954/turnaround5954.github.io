@@ -5,9 +5,6 @@ categories: [Deep Learning, LLM]
 tags: [transformer, rope, attention, beam-search, constrained-decoding]
 math: true
 toc: true
-image:
-  path: /assets/img/posts/physics/black_hole.jpg
-  alt: A deep dive into LLM internals.
 ---
 
 ## 前言
