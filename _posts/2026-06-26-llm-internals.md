@@ -5,6 +5,7 @@ categories: [Deep Learning, LLM]
 tags: [transformer, rope, attention, beam-search, constrained-decoding]
 math: true
 toc: true
+mermaid: true
 ---
 
 ## 前言

@@ -5,6 +5,7 @@ categories: [Deep Learning]
 tags: [transformer, positional encoding, rope, yarn]
 math: true
 toc: true
+mermaid: true
 image:
   path: /assets/img/posts/physics/black_hole.jpg
   alt: A deep dive into Rotary Position Embeddings and the frequency-domain perspective on length extrapolation.
