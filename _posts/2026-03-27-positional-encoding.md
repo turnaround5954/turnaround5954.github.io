@@ -2,7 +2,7 @@
 title: "🌌 When Transformers Dream of Inflation"
 date: 2026-03-27 23:00:00 +0800
 categories: [Deep Learning, Physics]
-tags: [transformer, positional encoding, rope，yarn]
+tags: [transformer, positional encoding, rope, yarn]
 math: true
 toc: true
 image:
